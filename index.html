@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Star Wars RPG</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8">
+        </div>
+        <div class="col-md-4">
+            <h1>Star Wars RPG!</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="padding-left: 0px;">
+            <h2>Your Character</h2>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div id="Obi-Wan" class="col-md-2 character">
+          <p class="text">Obi-Wan Kenobi</p>
+          <img src="assets/images/star-wars-obi-wan-kenobi-movie.jpg">
+          <p id="obiwandamage" class="text">120</p>
+        </div>
+        <div id="Luke" class="col-md-2 character">
+          <p class="text">Luke Skywalker</p>
+          <img src="assets/images/luke-skywalker-evil-pic.jpg">
+          <p id="lukedamage" class="text">100</p>
+        </div>
+        <div id="DarthSid" class="col-md-2 character">
+          <p class="text">Darth Sidious</p>
+          <img src="assets/images/VERY_NASTY-e1442295971919.png">
+          <p id="darthsiddamage" class="text">150</p>
+        </div>
+        <div id="DarthMaul" class="col-md-2 character">
+          <p class="text">Darth Maul</p>
+          <img src="assets/images/Darth-Maul_632eb5af.jpeg">
+          <p id="darthmaldamage" class="text">180</p>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="padding-left: 0px;">
+            <h2>Enemies Available To Attack</h2>
+        </div>
+    </div>
+
+    <div id="enemyrow" class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="padding-left: 0px;">
+            <h2>Fight Section</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="padding-left: 0px;">
+            <button id="attack" type="button"><p>Attack</p></button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="padding-left: 0px;">
+            <h2>Defender</h2>
+        </div>
+    </div>
+
+    <div id="defenderRow" class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <script src="assets/javascript/game.js"></script>
+</div>
+</body>
+
+</html>
