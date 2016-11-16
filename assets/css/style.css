@@ -68,8 +68,11 @@ col-md-12 {
   height: 120px;
 }
 
-
-
-#attack {
+button {
   margin-top: 1%;
+  width: 7%;
+}
+
+#reset {
+  margin-bottom: 100px;
 }
