@@ -4,18 +4,18 @@ var obiWan = {hp: 120, attack: 8};
 var darthMaul = {hp: 180, attack: 25};
 var darthSid = {hp: 150, attack: 15};
 
-  //set variables
+//set variables
 
-  var canChooseCharacter = true;
-  var canChooseDefender = false;
-  var canAttack = false;
-  var yourCharacter = "";
-  var yourCharacterAttack;
-  var defender = "";
-  var gameOver = false;
+var canChooseCharacter = true;
+var canChooseDefender = false;
+var canAttack = false;
+var yourCharacter = "";
+var yourCharacterAttack;
+var defender = "";
+var gameOver = false;
+var defeatedEnemy = false;
 
 $(document).ready(function() {
-
 
     //set functions
 
@@ -57,22 +57,19 @@ $(document).ready(function() {
             canAttack = true;
             defender = "Obi-Wan";
             $("#gamelogA").empty();
-        }
-        if (this.id == "Luke" && canChooseDefender && yourCharacter !== "Luke") {
+        } else if (this.id == "Luke" && canChooseDefender && yourCharacter !== "Luke") {
             $('#Luke').toggleClass('enemy, defender').prependTo('#defenderRow');
             canChooseDefender = false;
             canAttack = true;
             defender = "Luke";
             $("#gamelogA").empty();
-        }
-        if (this.id == "DarthSid" && canChooseDefender && yourCharacter !== "Darth Sidious") {
+        } else if (this.id == "DarthSid" && canChooseDefender && yourCharacter !== "Darth Sidious") {
             $('#DarthSid').toggleClass('enemy, defender').prependTo('#defenderRow');
             canChooseDefender = false;
             canAttack = true;
             defender = "Darth Sidious";
             $("#gamelogA").empty();
-        }
-        if (this.id == "DarthMaul" && canChooseDefender && yourCharacter !== "Darth Maul") {
+        } else if (this.id == "DarthMaul" && canChooseDefender && yourCharacter !== "Darth Maul") {
             $('#DarthMaul').toggleClass('enemy, defender').prependTo('#defenderRow');
             canChooseDefender = false;
             canAttack = true;
@@ -83,154 +80,224 @@ $(document).ready(function() {
 
     //click attack button to decrease enemy hp and your character hp and display results
     $('#attack').click(function(){
-      if (defender == "Obi-Wan" && canAttack) {
+      if (defender === "Obi-Wan" && canAttack) {
         $("#gamelogA").text("You attacked " + defender + " for " + yourCharacterAttack + " damage");
         $("#gamelogB").text(defender + " attacked back for " + obiWan.attack + " damage");
         obiWan.hp -= yourCharacterAttack;
         yourCharacterAttack *= 2;
         $("#obiwandamage").text(obiWan.hp);
-        if (yourCharacter = "Luke"){
+        if (yourCharacter === "Luke"){
           luke.hp -= obiWan.attack;
           $("#lukedamage").text(luke.hp);
-        }
-        if (yourCharacter = "Darth Sidious"){
+          if (obiWan.hp <= 0){
+            $('#Obi-Wan').hide()
+            $("#gamelogA").text("You have defeated Obi-Wan");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
+        } else if (yourCharacter === "Darth Sidious"){
           darthSid.hp -= obiWan.attack;
           $("#darthsiddamage").text(darthSid.hp);
-        }
-        if (yourCharacter = "Darth Maul"){
+          if (obiWan.hp <= 0){
+            $('#Obi-Wan').hide()
+            $("#gamelogA").text("You have defeated Obi-Wan");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
+        } else if (yourCharacter === "Darth Maul"){
           darthMaul.hp -= obiWan.attack;
           $("#darthmaldamage").text(darthMaul.hp);
+          if (obiWan.hp <= 0){
+            $('#Obi-Wan').hide()
+            $("#gamelogA").text("You have defeated Obi-Wan");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
         }
-        if (obiWan.hp <= 0){
-          $('#Obi-Wan').hide()
-          $("#gamelogA").text("You have defeated Obi-Wan");
-          $("#gamelogB").empty();
-          canChooseDefender = true;
-          defender = "";
-        };
-      }
-      if (defender == "Luke" && canAttack) {
+      } else if (defender === "Luke" && canAttack) {
         $("#gamelogA").text("You attacked " + defender + " for " + yourCharacterAttack + " damage");
         $("#gamelogB").text(defender + " attacked back for " + luke.attack + " damage");
         luke.hp -= yourCharacterAttack;
         yourCharacterAttack *= 2;
         $("#lukedamage").text(luke.hp);
-        if (yourCharacter = "Obi-Wan"){
+        if (yourCharacter === "Obi-Wan"){
           obiWan.hp -= luke.attack;
           $("#obiwandamage").text(obiWan.hp);
-        }
-        if (yourCharacter = "Darth Sidious"){
+          if (luke.hp <= 0){
+            $('#Luke').hide()
+            $("#gamelogA").text("You have defeated Luke Skywalker");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
+        } else if (yourCharacter === "Darth Sidious"){
           darthSid.hp -= luke.attack;
           $("#darthsiddamage").text(darthSid.hp);
-        }
-        if (yourCharacter = "Darth Maul"){
+          if (luke.hp <= 0){
+            $('#Luke').hide()
+            $("#gamelogA").text("You have defeated Luke Skywalker");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
+        } else if (yourCharacter === "Darth Maul"){
           darthMaul.hp -= luke.attack;
           $("#darthmaldamage").text(darthMaul.hp);
+          if (luke.hp <= 0){
+            $('#Luke').hide()
+            $("#gamelogA").text("You have defeated Luke Skywalker");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
         }
-        if (luke.hp <= 0){
-          $('#Luke').hide()
-          $("#gamelogA").text("You have defeated Luke Skywalker");
-          $("#gamelogB").empty();
-          canChooseDefender = true;
-          defender = "";
-        };
-      }
-      if (defender == "Darth Sidious" && canAttack) {
+      } else if (defender === "Darth Sidious" && canAttack) {
         $("#gamelogA").text("You attacked " + defender + " for " + yourCharacterAttack + " damage");
         $("#gamelogB").text(defender + " attacked back for " + darthSid.attack + " damage");
         darthSid.hp -= yourCharacterAttack;
         yourCharacterAttack *= 2;
         $("#darthsiddamage").text(darthSid.hp);
-        if (yourCharacter = "Luke"){
+        if (yourCharacter === "Luke"){
           luke.hp -= darthSid.attack;
           $("#lukedamage").text(luke.hp);
-        }
-        if (yourCharacter = "Obi-Wan"){
+          if (darthSid.hp <= 0){
+            $('#DarthSid').hide()
+            $("#gamelogA").text("You have defeated Darth Sidious");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
+        } else if (yourCharacter === "Obi-Wan"){
           obiWan.hp -= darthSid.attack;
           $("#obiwandamage").text(obiWan.hp);
-        }
-        if (yourCharacter = "Darth Maul"){
+          if (darthSid.hp <= 0){
+            $('#DarthSid').hide()
+            $("#gamelogA").text("You have defeated Darth Sidious");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
+        } else if (yourCharacter === "Darth Maul"){
           darthMaul.hp -= darthSid.attack;
           $("#darthmaldamage").text(darthMaul.hp);
+          if (darthSid.hp <= 0){
+            $('#DarthSid').hide()
+            $("#gamelogA").text("You have defeated Darth Sidious");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
         }
-        if (darthSid.hp <= 0){
-          $('#DarthSid').hide()
-          $("#gamelogA").text("You have defeated Darth Sidious");
-          $("#gamelogB").empty();
-          canChooseDefender = true;
-          defender = "";
-        };
-      }
-      if (defender == "Darth Maul" && canAttack) {
+      } else if (defender === "Darth Maul" && canAttack) {
         $("#gamelogA").text("You attacked " + defender + " for " + yourCharacterAttack + " damage");
         $("#gamelogB").text(defender + " attacked back for " + darthMaul.attack + " damage");
         darthMaul.hp -= yourCharacterAttack;
         yourCharacterAttack *= 2;
         $("#darthmaldamage").text(darthMaul.hp);
-        if (yourCharacter = "Luke"){
+        if (yourCharacter === "Luke"){
           luke.hp -= darthMaul.attack;
           $("#lukedamage").text(luke.hp);
-        }
-        if (yourCharacter = "Darth Sidious"){
+          if (darthMaul.hp <= 0){
+            $('#DarthMaul').hide()
+            $("#gamelogA").text("You have defeated Darth Maul");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
+        } else if (yourCharacter === "Darth Sidious"){
           darthSid.hp -= darthMaul.attack;
           $("#darthsiddamage").text(darthSid.hp);
-        }
-        if (yourCharacter = "Obi-Wan"){
+          if (darthMaul.hp <= 0){
+            $('#DarthMaul').hide()
+            $("#gamelogA").text("You have defeated Darth Maul");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
+        } else if (yourCharacter === "Obi-Wan"){
           obiWan.hp -= darthMaul.attack;
           $("#obiwandamage").text(obiWan.hp);
+          if (darthMaul.hp <= 0){
+            $('#DarthMaul').hide()
+            $("#gamelogA").text("You have defeated Darth Maul");
+            $("#gamelogB").empty();
+            canChooseDefender = true;
+            defeatedEnemy = true;
+            canAttack = false;
+            defender = "";
+          }
         }
-        if (darthMaul.hp <= 0){
-          $('#DarthMaul').hide()
-          $("#gamelogA").text("You have defeated Darth Maul");
-          $("#gamelogB").empty();
-          canChooseDefender = true;
-          defender = "";
-        };
       }
-      if (canAttack === false) {
+
+      if (!canAttack && !defeatedEnemy) {
         $("#gamelogA").text("No enemy selected")
         $("#gamelogB").empty();
       }
-
-      //losing the game
-      if (yourCharacter = "Luke" && luke.hp <= 0){
-        $("#gamelogA").text("You have been defeated Luke Skywalker!");
-        $("#gamelogB").empty();
-        canChooseCharacter = false;
-        canChooseDefender = false;
-        canAttack = false;
-        gameOver = true;
-        defender = "";
-      }
-      if (yourCharacter = "Obi-Wan" && obiWan.hp <= 0){
-        $("#gamelogA").text("You have been defeated Obi-Wan!");
-        $("#gamelogB").empty();
-        canChooseCharacter = false;
-        canChooseDefender = false;
-        canAttack = false;
-        gameOver = true;
-        defender = "";
-      }
-      if (yourCharacter = "Darth Sidious" && darthSid.hp <= 0){
-        $("#gamelogA").text("You have been defeated Darth Sidious!");
-        $("#gamelogB").empty();
-        canChooseCharacter = false;
-        canChooseDefender = false;
-        canAttack = false;
-        gameOver = true;
-        defender = "";
-      }
-      if (yourCharacter = "Darth Maul" && darthMaul.hp <= 0){
-        $("#gamelogA").text("You have been defeated Darth Maul!");
-        $("#gamelogB").empty();
-        canChooseCharacter = false;
-        canChooseDefender = false;
-        canAttack = false;
-        gameOver = true;
-        defender = "";
-      }
-
     });
+
+    //losing the game
+    if (yourCharacter === "Luke" && luke.hp <= 0){
+      $("#gamelogA").text("You have been defeated Luke Skywalker!");
+      $("#gamelogB").empty();
+      canChooseCharacter = false;
+      canChooseDefender = false;
+      canAttack = false;
+      gameOver = true;
+      defender = "";
+    }
+    if (yourCharacter === "Obi-Wan" && obiWan.hp <= 0){
+      $("#gamelogA").text("You have been defeated Obi-Wan!");
+      $("#gamelogB").empty();
+      canChooseCharacter = false;
+      canChooseDefender = false;
+      canAttack = false;
+      gameOver = true;
+      defender = "";
+    }
+    if (yourCharacter === "Darth Sidious" && darthSid.hp <= 0){
+      $("#gamelogA").text("You have been defeated Darth Sidious!");
+      $("#gamelogB").empty();
+      canChooseCharacter = false;
+      canChooseDefender = false;
+      canAttack = false;
+      gameOver = true;
+      defender = "";
+    }
+    if (yourCharacter === "Darth Maul" && darthMaul.hp <= 0){
+      $("#gamelogA").text("You have been defeated Darth Maul!");
+      $("#gamelogB").empty();
+      canChooseCharacter = false;
+      canChooseDefender = false;
+      canAttack = false;
+      gameOver = true;
+      defender = "";
+    }
+
 
     //reset game
   $('#reset').click(function(){
@@ -253,6 +320,5 @@ $(document).ready(function() {
     obiWan.hp = 120;
     darthSid.hp = 150;
     darthMaul.hp = 180;
-  })
-
+  });
 });
